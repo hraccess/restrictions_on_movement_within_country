@@ -680,12 +680,6 @@ function restrictions_on_movement_within_country_field_default_fields() {
       'bundle' => 'bureaucratic_requirement_within_',
       'default_value' => array(
         0 => array(
-          'entity' => {
-            "item_id" : null,
-            "field_name" : "field_br_req_within_impact",
-            "field_value" : { "und" : [ { "value" : "0" } ] },
-            "field_br_req_within_country_impa" : { "und" : [  ] }
-          },
         ),
       ),
       'deleted' => '0',
