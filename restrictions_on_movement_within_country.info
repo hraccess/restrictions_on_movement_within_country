@@ -44,7 +44,6 @@ features[field][] = node-bureaucratic_requirement_within_-field_sectors
 features[field][] = node-bureaucratic_requirement_within_-field_status_of_request
 features[field][] = node-bureaucratic_requirement_within_-title_field
 features[node][] = bureaucratic_requirement_within_
-features[taxonomy][] = access_constraints_incident_type
 features[taxonomy][] = purpose_of_administrative_request
 features[variable][] = comment_anonymous_bureaucratic_requirement_within_
 features[variable][] = comment_bureaucratic_requirement_within_
