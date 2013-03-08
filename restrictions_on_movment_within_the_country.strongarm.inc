@@ -1,14 +1,35 @@
 <?php
 /**
  * @file
- * restrictions_on_movement_within_country.strongarm.inc
+ * restrictions_on_movment_within_the_country.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function restrictions_on_movement_within_country_strongarm() {
+function restrictions_on_movment_within_the_country_strongarm() {
   $export = array();
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_node_bureaucratic_requirement_within_';
+  $strongarm->value = '1';
+  $export['auto_entitylabel_node_bureaucratic_requirement_within_'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_pattern_node_bureaucratic_requirement_within_';
+  $strongarm->value = '[node:field-date] [node:field_purpose_of_the_administrat] [node:field-organization-affected]';
+  $export['auto_entitylabel_pattern_node_bureaucratic_requirement_within_'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_php_node_bureaucratic_requirement_within_';
+  $strongarm->value = 0;
+  $export['auto_entitylabel_php_node_bureaucratic_requirement_within_'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -71,7 +92,7 @@ function restrictions_on_movement_within_country_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '12',
+          'weight' => '14',
         ),
       ),
       'display' => array(),
@@ -107,8 +128,7 @@ function restrictions_on_movement_within_country_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_bureaucratic_requirement_within_';
   $strongarm->value = array(
-    0 => 'status',
-    1 => 'promote',
+    0 => 'promote',
   );
   $export['node_options_bureaucratic_requirement_within_'] = $strongarm;
 

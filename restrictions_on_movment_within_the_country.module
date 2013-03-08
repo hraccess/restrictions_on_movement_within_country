@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Restrictions on movment within the country feature.
+ */
+
+include_once 'restrictions_on_movment_within_the_country.features.inc';

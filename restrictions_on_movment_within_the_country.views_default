@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * restrictions_on_movement_within_country.views_default.inc
+ * restrictions_on_movment_within_the_country.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function restrictions_on_movement_within_country_views_default_views() {
+function restrictions_on_movment_within_the_country_views_default_views() {
   $export = array();
 
   $view = new view();
@@ -37,7 +37,7 @@ function restrictions_on_movement_within_country_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Date */
+  /* Field: Content: Date of submition */
   $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
   $handler->display->display_options['fields']['field_date']['field'] = 'field_date';
@@ -49,22 +49,22 @@ function restrictions_on_movement_within_country_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Field: Geographical Location */
+  /* Field: Field: Admin1/Admin2 */
   $handler->display->display_options['fields']['field_admin1_2']['id'] = 'field_admin1_2';
   $handler->display->display_options['fields']['field_admin1_2']['table'] = 'field_data_field_admin1_2';
   $handler->display->display_options['fields']['field_admin1_2']['field'] = 'field_admin1_2';
   $handler->display->display_options['fields']['field_admin1_2']['label'] = 'Geographical Location (Origin)';
+  /* Field: Content: Location */
+  $handler->display->display_options['fields']['field_locations']['id'] = 'field_locations';
+  $handler->display->display_options['fields']['field_locations']['table'] = 'field_data_field_locations';
+  $handler->display->display_options['fields']['field_locations']['field'] = 'field_locations';
+  $handler->display->display_options['fields']['field_locations']['label'] = 'Geographical Location (Destination)';
   /* Field: Content: Sector(s)/Cluster(s) affected */
   $handler->display->display_options['fields']['field_sectors']['id'] = 'field_sectors';
   $handler->display->display_options['fields']['field_sectors']['table'] = 'field_data_field_sectors';
   $handler->display->display_options['fields']['field_sectors']['field'] = 'field_sectors';
   $handler->display->display_options['fields']['field_sectors']['label'] = 'Sector(s) Affected';
   $handler->display->display_options['fields']['field_sectors']['delta_offset'] = '0';
-  /* Field: Content: Source of Information */
-  $handler->display->display_options['fields']['field_source_of_information']['id'] = 'field_source_of_information';
-  $handler->display->display_options['fields']['field_source_of_information']['table'] = 'field_data_field_source_of_information';
-  $handler->display->display_options['fields']['field_source_of_information']['field'] = 'field_source_of_information';
-  $handler->display->display_options['fields']['field_source_of_information']['label'] = 'Source';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -123,7 +123,7 @@ function restrictions_on_movement_within_country_views_default_views() {
   $handler->display->display_options['filters']['field_sectors_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_sectors_tid']['vocabulary'] = 'clusters';
   $handler->display->display_options['filters']['field_sectors_tid']['hierarchy'] = 1;
-  /* Filter criterion: Field: Geographical Location (field_admin1_2) */
+  /* Filter criterion: Field: Admin1/Admin2 (field_admin1_2) */
   $handler->display->display_options['filters']['field_admin1_2_tid']['id'] = 'field_admin1_2_tid';
   $handler->display->display_options['filters']['field_admin1_2_tid']['table'] = 'field_data_field_admin1_2';
   $handler->display->display_options['filters']['field_admin1_2_tid']['field'] = 'field_admin1_2_tid';
@@ -163,7 +163,7 @@ function restrictions_on_movement_within_country_views_default_views() {
   $handler->display->display_options['filters']['field_locations_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_locations_tid']['vocabulary'] = 'locations';
   $handler->display->display_options['filters']['field_locations_tid']['hierarchy'] = 1;
-  /* Filter criterion: Content: Date (field_date) */
+  /* Filter criterion: Content: Date of submition (field_date) */
   $handler->display->display_options['filters']['field_date_value']['id'] = 'field_date_value';
   $handler->display->display_options['filters']['field_date_value']['table'] = 'field_data_field_date';
   $handler->display->display_options['filters']['field_date_value']['field'] = 'field_date_value';
@@ -221,13 +221,108 @@ function restrictions_on_movement_within_country_views_default_views() {
     t('Title'),
     t('Incident Date'),
     t('Geographical Location (Origin)'),
-    t('Sector(s) Affected'),
-    t('Source'),
-    t('Sector(s)'),
     t('Geographical Location (Destination)'),
+    t('Sector(s) Affected'),
+    t('Sector(s)'),
     t('Data export'),
   );
   $export['bureaucratic_requirements_within_the_country'] = $view;
+
+  $view = new view();
+  $view->name = 'incident_types_for_restriction_on_movement_within_the_country';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'taxonomy_term_data';
+  $view->human_name = 'Incident types for Restriction on movement within the country';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Responsible Actor';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Taxonomy term: Access Constraint (field_access_constraint) */
+  $handler->display->display_options['relationships']['field_access_constraint_tid']['id'] = 'field_access_constraint_tid';
+  $handler->display->display_options['relationships']['field_access_constraint_tid']['table'] = 'field_data_field_access_constraint';
+  $handler->display->display_options['relationships']['field_access_constraint_tid']['field'] = 'field_access_constraint_tid';
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'incident_type' => 'incident_type',
+  );
+  $handler->display->display_options['filters']['machine_name']['group'] = 1;
+  /* Filter criterion: Taxonomy term: Access Constraint (field_access_constraint) */
+  $handler->display->display_options['filters']['field_access_constraint_tid']['id'] = 'field_access_constraint_tid';
+  $handler->display->display_options['filters']['field_access_constraint_tid']['table'] = 'field_data_field_access_constraint';
+  $handler->display->display_options['filters']['field_access_constraint_tid']['field'] = 'field_access_constraint_tid';
+  $handler->display->display_options['filters']['field_access_constraint_tid']['value'] = array(
+    592 => '592',
+  );
+  $handler->display->display_options['filters']['field_access_constraint_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_access_constraint_tid']['vocabulary'] = 'access_constraints';
+
+  /* Display: Incident Types (Restriction on movement within the country) */
+  $handler = $view->new_display('entityreference', 'Incident Types (Restriction on movement within the country)', 'entityreference_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Incident Types (Restriction on movement within the country)';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'entityreference_style';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_organization_type',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['search_fields'] = array(
+    'name' => 'name',
+    'field_organization_type' => 0,
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'entityreference_fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $translatables['incident_types_for_restriction_on_movement_within_the_country'] = array(
+    t('Master'),
+    t('Responsible Actor'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('term from field_access_constraint'),
+    t('Incident Types (Restriction on movement within the country)'),
+  );
+  $export['incident_types_for_restriction_on_movement_within_the_country'] = $view;
 
   return $export;
 }

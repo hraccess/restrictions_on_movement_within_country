@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * restrictions_on_movement_within_country.features.field.inc
+ * restrictions_on_movment_within_the_country.features.field.inc
  */
 
 /**
  * Implements hook_field_default_fields().
  */
-function restrictions_on_movement_within_country_field_default_fields() {
+function restrictions_on_movment_within_the_country_field_default_fields() {
   $fields = array();
 
   // Exported field: 'field_collection_item-field_br_req_within_impact-field_br_req_within_country_impa'.
@@ -132,11 +132,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'field_br_req_within_impact',
-      'default_value' => array(
-        0 => array(
-          'value' => '0',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -474,97 +470,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '10',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-bureaucratic_requirement_within_-field_access_constraints'.
-  $fields['node-bureaucratic_requirement_within_-field_access_constraints'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_access_constraints',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'vocabulary' => 'access_constraints_incident_type',
-            'parent' => '0',
-          ),
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'bureaucratic_requirement_within_',
-      'default_value' => array(
-        0 => array(
-          'tid' => '706',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 16,
-        ),
-        'entityreference_view_widget' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'ical' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_access_constraints',
-      'label' => 'Access Constraints & Incident Types',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'hs_taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_hs',
-        'weight' => '2',
+        'weight' => '11',
       ),
     ),
   );
@@ -678,10 +584,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'bureaucratic_requirement_within_',
-      'default_value' => array(
-        0 => array(
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -729,7 +632,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
@@ -808,7 +711,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_date',
-      'label' => 'Date',
+      'label' => 'Date of submition',
       'required' => 1,
       'settings' => array(
         'default_value' => 'now',
@@ -836,14 +739,121 @@ function restrictions_on_movement_within_country_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-bureaucratic_requirement_within_-field_geographical_location_dest'.
-  $fields['node-bureaucratic_requirement_within_-field_geographical_location_dest'] = array(
+  // Exported field: 'node-bureaucratic_requirement_within_-field_incident_type'.
+  $fields['node-bureaucratic_requirement_within_-field_incident_type'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_geographical_location_dest',
+      'field_name' => 'field_incident_type',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'views',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'test_field_behavior' => array(
+              'status' => 0,
+            ),
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'view' => array(
+            'args' => array(),
+            'display_name' => 'entityreference_1',
+            'view_name' => 'incident_types_for_restriction_on_movement_within_the_country',
+          ),
+        ),
+        'target_type' => 'taxonomy_term',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'bureaucratic_requirement_within_',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 19,
+        ),
+        'entityreference_view_widget' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_incident_type',
+      'label' => 'Incident Type',
+      'required' => 0,
+      'settings' => array(
+        'behaviors' => array(
+          'taxonomy-index' => array(
+            'status' => TRUE,
+          ),
+          'test_instance_behavior' => array(
+            'status' => 0,
+          ),
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-bureaucratic_requirement_within_-field_locations'.
+  $fields['node-bureaucratic_requirement_within_-field_locations'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_locations',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -884,7 +894,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 19,
+          'weight' => 2,
         ),
         'entityreference_view_widget' => array(
           'label' => 'above',
@@ -906,134 +916,18 @@ function restrictions_on_movement_within_country_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_geographical_location_dest',
+      'field_name' => 'field_locations',
       'label' => 'Geographical Location (Destination)',
       'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 0,
-        'module' => 'options',
-        'settings' => array(
-          'autocomplete_path' => 'taxonomy/autocomplete',
-          'size' => 60,
-        ),
-        'type' => 'options_select',
-        'weight' => '6',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-bureaucratic_requirement_within_-field_organization'.
-  $fields['node-bureaucratic_requirement_within_-field_organization'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_organization',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'node' => array(
-          'columns' => array(
-            'target_id' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
-      'indexes' => array(
-        'target_id' => array(
-          0 => 'target_id',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'entityreference',
-      'settings' => array(
-        'handler' => 'views',
-        'handler_settings' => array(
-          'behaviors' => array(
-            'test_field_behavior' => array(
-              'status' => 0,
-            ),
-            'views-select-list' => array(
-              'status' => 1,
-            ),
-          ),
-          'view' => array(
-            'args' => array(
-              0 => 'organization_type',
-            ),
-            'display_name' => 'issuing_actor',
-            'view_name' => 'issuing_organization',
-          ),
-        ),
-        'target_type' => 'taxonomy_term',
-      ),
-      'translatable' => '0',
-      'type' => 'entityreference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'bureaucratic_requirement_within_',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'entityreference',
-          'settings' => array(
-            'link' => FALSE,
-          ),
-          'type' => 'entityreference_label',
-          'weight' => 13,
-        ),
-        'entityreference_view_widget' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'ical' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_organization',
-      'label' => 'If denied, by whome?',
-      'required' => 1,
-      'settings' => array(
-        'behaviors' => array(
-          'taxonomy-index' => array(
-            'status' => TRUE,
-          ),
-          'test_instance_behavior' => array(
-            'status' => 0,
-          ),
-        ),
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
         'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'path' => '',
-          'size' => '60',
-        ),
-        'type' => 'options_select',
-        'weight' => '8',
+        'module' => 'hs_taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_hs',
+        'weight' => '6',
       ),
     ),
   );
@@ -1042,7 +936,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
   $fields['node-bureaucratic_requirement_within_-field_organization_affected'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_organization_affected',
@@ -1076,7 +970,9 @@ function restrictions_on_movement_within_country_field_default_fields() {
             ),
           ),
           'view' => array(
-            'args' => array(),
+            'args' => array(
+              0 => 'name_field',
+            ),
             'display_name' => 'entityreference_1',
             'view_name' => 'organizations_affected',
           ),
@@ -1122,7 +1018,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_organization_affected',
-      'label' => 'Travel permit requested by?',
+      'label' => 'Administrative request submitted by',
       'required' => 1,
       'settings' => array(
         'behaviors' => array(
@@ -1234,7 +1130,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
           ),
         ),
         'type' => 'geocoder',
-        'weight' => '13',
+        'weight' => '15',
       ),
     ),
   );
@@ -1310,7 +1206,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_purpose_of_the_administrat',
-      'label' => 'Purpose of the travel permit request',
+      'label' => 'Purpose of the administrative request',
       'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -1406,7 +1302,7 @@ function restrictions_on_movement_within_country_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -1572,21 +1468,20 @@ function restrictions_on_movement_within_country_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('A field replacing node title.');
-  t('Access Constraints & Incident Types');
-  t('Date');
+  t('Administrative request submitted by');
+  t('Date of submition');
   t('Description/Remarks');
   t('Geographical Location (Destination)');
   t('Geographical Location (Origin)');
-  t('If denied, by whome?');
   t('If denied/delayed, whom');
   t('Impact');
+  t('Incident Type');
   t('Mark on map');
-  t('Purpose of the travel permit request');
+  t('Purpose of the administrative request');
   t('Sector(s) affected');
   t('Status of Request');
   t('Submission Status');
   t('Title');
-  t('Travel permit requested by?');
   t('Value');
 
   return $fields;

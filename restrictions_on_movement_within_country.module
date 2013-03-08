@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Restrictions on movement within country feature.
- */
-
-include_once 'restrictions_on_movement_within_country.features.inc';
